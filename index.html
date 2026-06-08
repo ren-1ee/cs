@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CS Resources — Ren Hoe Lee</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a18;
+  --ink2: #4a4a46;
+  --ink3: #8a8a84;
+  --paper: #faf8f3;
+  --paper2: #f2efea;
+  --paper3: #e8e4dc;
+  --red: #c0392b;
+  --red-bg: #fdf1f0;
+  --red-border: #e8a09a;
+  --green: #2d6a4f;
+  --green-bg: #f0f7f4;
+  --green-border: #95c9b0;
+  --blue: #1a4a7a;
+  --blue-bg: #f0f4fa;
+  --blue-border: #94b4d8;
+  --amber: #7a4a00;
+  --amber-bg: #fdf6eb;
+  --amber-border: #d4a055;
+  --purple: #4a2a7a;
+  --purple-bg: #f4f0fa;
+  --purple-border: #b49ad4;
+  --accent: #c0392b;
+  --rule: #d8d4cc;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ── */
+.page-header {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 3rem 3rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.12;
+}
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: -90px; left: 28%;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.04;
+}
+.header-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.header-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 0.6rem;
+}
+.header-title {
+  font-family: 'Fraunces', serif;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+.header-sub {
+  font-size: 14px;
+  color: #bbb;
+  max-width: 540px;
+  line-height: 1.6;
+}
+.header-pills {
+  display: flex;
+  gap: 8px;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+.pill {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.65);
+}
+
+/* ── Filter bar ── */
+.filter-bar {
+  background: var(--paper2);
+  border-bottom: 1.5px solid var(--rule);
+  padding: 0 3rem;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+}
+.filter-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.1rem;
+  border: none;
+  background: transparent;
+  color: var(--ink3);
+  border-bottom: 2.5px solid transparent;
+  margin-bottom: -1.5px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+}
+.filter-btn:hover { color: var(--ink2); }
+.filter-btn.active { color: var(--ink); border-bottom-color: var(--accent); }
+
+/* ── Main ── */
+main {
+  flex: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 2.5rem 3rem 4rem;
+}
+
+.section-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ── Card grid ── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 3rem;
+}
+
+.resource-card {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s, transform 0.15s;
+  text-decoration: none;
+  color: inherit;
+}
+.resource-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+.card-band {
+  height: 4px;
+}
+.band-red    { background: var(--red); }
+.band-blue   { background: var(--blue); }
+.band-green  { background: var(--green); }
+.band-amber  { background: var(--amber); }
+.band-purple { background: var(--purple); }
+
+.card-body {
+  padding: 1.1rem 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 0.7rem;
+}
+.card-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.tag-igcse   { background: var(--red-bg);    color: var(--red); }
+.tag-ibdp    { background: var(--blue-bg);   color: var(--blue); }
+.tag-hsc     { background: var(--purple-bg); color: var(--purple); }
+.tag-python  { background: var(--green-bg);  color: var(--green); }
+.tag-pseudo  { background: var(--amber-bg);  color: var(--amber); }
+.tag-new     { background: var(--ink); color: var(--paper); }
+.tag-remediation { background: var(--red-bg); color: var(--red); }
+
+.card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 0.4rem;
+  color: var(--ink);
+}
+.card-desc {
+  font-size: 13px;
+  color: var(--ink2);
+  line-height: 1.55;
+  flex: 1;
+  margin-bottom: 1rem;
+}
+
+.card-footer {
+  padding: 0.7rem 1.25rem;
+  border-top: 1px solid var(--rule);
+  background: var(--paper2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--ink3);
+  letter-spacing: 0.04em;
+}
+.card-arrow {
+  font-size: 14px;
+  color: var(--ink3);
+  transition: transform 0.15s, color 0.15s;
+}
+.resource-card:hover .card-arrow {
+  transform: translateX(3px);
+  color: var(--accent);
+}
+
+/* ── Coming soon card ── */
+.card-soon {
+  opacity: 0.55;
+  pointer-events: none;
+}
+.card-soon .card-footer {
+  background: var(--paper3);
+}
+
+/* ── Stat strip ── */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 2.5rem;
+}
+.stat-box {
+  background: var(--paper2);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  text-align: center;
+}
+.stat-n {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+.stat-lbl {
+  font-size: 11.5px;
+  color: var(--ink3);
+  margin-top: 4px;
+}
+
+/* ── About strip ── */
+.about-strip {
+  background: var(--ink);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  color: var(--paper);
+}
+.about-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+.about-name {
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.about-bio {
+  font-size: 12.5px;
+  color: #aaa;
+  line-height: 1.5;
+}
+.about-pills {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.about-pill {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.55);
+}
+
+/* ── Footer ── */
+.page-footer {
+  text-align: center;
+  padding: 1.75rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--ink3);
+  border-top: 1px solid var(--rule);
+  letter-spacing: 0.05em;
+}
+
+/* ── Hidden by filter ── */
+.card-wrap.hidden { display: none; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="page-header">
+  <div class="header-inner">
+    <div class="header-eyebrow">Computer Science Resources · Cambridge &amp; IB</div>
+    <h1 class="header-title">Student Resources<br>by Ren Hoe Lee</h1>
+    <p class="header-sub">Remediation worksheets, practice papers, and structured revision materials for IGCSE, IBDP, and HSC Computer Science.</p>
+    <div class="header-pills">
+      <span class="pill">Cambridge IGCSE 0478</span>
+      <span class="pill">IBDP Computer Science</span>
+      <span class="pill">HSC Software Engineering</span>
+      <span class="pill">18 years teaching</span>
+      <span class="pill">IB Cat 2 &amp; Cat 3 Certified</span>
+    </div>
+  </div>
+</header>
+
+<!-- FILTER BAR -->
+<nav class="filter-bar">
+  <button class="filter-btn active" onclick="filter(this,'all')">All resources</button>
+  <button class="filter-btn" onclick="filter(this,'igcse')">IGCSE</button>
+  <button class="filter-btn" onclick="filter(this,'ibdp')">IBDP</button>
+  <button class="filter-btn" onclick="filter(this,'hsc')">HSC</button>
+  <button class="filter-btn" onclick="filter(this,'remediation')">Remediation</button>
+  <button class="filter-btn" onclick="filter(this,'python')">Python</button>
+</nav>
+
+<!-- MAIN -->
+<main>
+
+  <!-- About strip -->
+  <div class="about-strip" style="margin-top:0">
+    <div class="about-avatar">R</div>
+    <div>
+      <div class="about-name">Ren Hoe Lee</div>
+      <div class="about-bio">Senior STEM Educator · Singapore · 18 years international teaching across Singapore, New Zealand, and global pathways.</div>
+      <div class="about-pills">
+        <span class="about-pill">NTU B.Eng (Hons) EEE</span>
+        <span class="about-pill">NIE/NTU Dip Ed</span>
+        <span class="about-pill">CAIE Exam Officer</span>
+        <span class="about-pill">IB Cat 2 &amp; Cat 3</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stat-strip">
+    <div class="stat-box">
+      <div class="stat-n" style="color:var(--red)">1</div>
+      <div class="stat-lbl">resource published</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-n" style="color:var(--blue)">3</div>
+      <div class="stat-lbl">syllabuses covered</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-n" style="color:var(--green)">18</div>
+      <div class="stat-lbl">years teaching</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-n" style="color:var(--amber)">More</div>
+      <div class="stat-lbl">coming soon</div>
+    </div>
+  </div>
+
+  <!-- IGCSE section -->
+  <div class="section-label">IGCSE Computer Science · Cambridge 0478</div>
+  <div class="card-grid">
+
+    <!-- LIVE card -->
+    <div class="card-wrap" data-tags="igcse remediation pseudo">
+      <a class="resource-card" href="igcse_paper2_15mark_remediation.html">
+        <div class="card-band band-red"></div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-igcse">IGCSE</span>
+            <span class="card-tag tag-pseudo">Pseudocode</span>
+            <span class="card-tag tag-remediation">Remediation</span>
+            <span class="card-tag tag-new">New</span>
+          </div>
+          <div class="card-title">Paper 2 — 15-Mark Programming Question</div>
+          <div class="card-desc">Interactive remediation worksheet targeting the Q10-style nested loop, 2D array, and fee-calculation question. Includes the full mock question, six common mistakes, mark scheme, guided scaffold, and a hotel practice question.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-meta">9 tabs · Mock 2026 · Car park &amp; hotel scenarios</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Coming soon -->
+    <div class="card-wrap card-soon" data-tags="igcse python">
+      <div class="resource-card">
+        <div class="card-band band-red"></div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-igcse">IGCSE</span>
+            <span class="card-tag tag-python">Python</span>
+          </div>
+          <div class="card-title">Paper 2 — Python Practice Set</div>
+          <div class="card-desc">Exam-style Python programming questions with worked solutions and mark schemes. Covers selection, iteration, functions, and file handling within the 0478 scope.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-meta">Coming soon</span>
+          <span class="card-arrow">–</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coming soon -->
+    <div class="card-wrap card-soon" data-tags="igcse pseudo">
+      <div class="resource-card">
+        <div class="card-band band-red"></div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-igcse">IGCSE</span>
+            <span class="card-tag tag-pseudo">Pseudocode</span>
+          </div>
+          <div class="card-title">Paper 1 — Structured Questions Revision Pack</div>
+          <div class="card-desc">Topic-by-topic revision questions covering data representation, logic gates, networking, and security. Formatted to match the Cambridge Paper 1 style.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-meta">Coming soon</span>
+          <span class="card-arrow">–</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- IBDP section -->
+  <div class="section-label">IBDP Computer Science · New Syllabus</div>
+  <div class="card-grid">
+
+    <div class="card-wrap card-soon" data-tags="ibdp">
+      <div class="resource-card">
+        <div class="card-band band-blue"></div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-ibdp">IBDP</span>
+          </div>
+          <div class="card-title">Topic 2.1 — OOP Practice Paper</div>
+          <div class="card-desc">Original practice paper for the hospital management system scenario. Full teacher mark scheme in IBDP format with red-text model answers.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-meta">Coming soon</span>
+          <span class="card-arrow">–</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrap card-soon" data-tags="ibdp">
+      <div class="resource-card">
+        <div class="card-band band-blue"></div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-ibdp">IBDP</span>
+          </div>
+          <div class="card-title">Topic 6.1 — Algorithm Design Practice Paper</div>
+          <div class="card-desc">Structured practice paper targeting abstract data types, searching, and sorting algorithms. Includes mark scheme with examiner commentary.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-meta">Coming soon</span>
+          <span class="card-arrow">–</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- HSC section -->
+  <div class="section-label">HSC Software Engineering · NSW</div>
+  <div class="card-grid">
+
+    <div class="card-wrap card-soon" data-tags="hsc python">
+      <div class="resource-card">
+        <div class="card-band band-purple"></div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-hsc">HSC</span>
+            <span class="card-tag tag-python">Python</span>
+          </div>
+          <div class="card-title">OOP &amp; Software Development Practice Set</div>
+          <div class="card-desc">HSC-aligned practice questions on object-oriented design, testing, and the software development lifecycle. Matches the NSW syllabus scope.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-meta">Coming soon</span>
+          <span class="card-arrow">–</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="page-footer">
+  © Ren Hoe Lee · Cambridge IGCSE · IBDP · HSC Software Engineering · Singapore
+</footer>
+
+<script>
+function filter(btn, tag) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.card-wrap').forEach(card => {
+    if (tag === 'all') {
+      card.classList.remove('hidden');
+    } else {
+      const tags = card.dataset.tags || '';
+      card.classList.toggle('hidden', !tags.includes(tag));
+    }
+  });
+}
+</script>
+</body>
+</html>
