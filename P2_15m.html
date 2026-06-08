@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IGCSE CS — 15-Mark Programming Question: Remediation Worksheet</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a18;
+  --ink2: #4a4a46;
+  --ink3: #8a8a84;
+  --paper: #faf8f3;
+  --paper2: #f2efea;
+  --paper3: #e8e4dc;
+  --red: #c0392b;
+  --red-bg: #fdf1f0;
+  --red-border: #e8a09a;
+  --green: #2d6a4f;
+  --green-bg: #f0f7f4;
+  --green-border: #95c9b0;
+  --blue: #1a4a7a;
+  --blue-bg: #f0f4fa;
+  --blue-border: #94b4d8;
+  --amber: #7a4a00;
+  --amber-bg: #fdf6eb;
+  --amber-border: #d4a055;
+  --purple: #4a2a7a;
+  --purple-bg: #f4f0fa;
+  --purple-border: #b49ad4;
+  --coral: #7a2a1a;
+  --coral-bg: #fdf0ec;
+  --coral-border: #d49484;
+  --accent: #c0392b;
+  --rule: #d8d4cc;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+}
+
+/* ── Page chrome ── */
+.page-header {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 2.5rem 3rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -60px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.12;
+}
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 30%;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.04;
+}
+.header-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 0.5rem;
+}
+.header-title {
+  font-family: 'Fraunces', serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 0.4rem;
+}
+.header-sub {
+  font-size: 13px;
+  color: #aaa;
+  font-style: italic;
+}
+.header-pills {
+  display: flex;
+  gap: 8px;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+.pill {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.75);
+}
+
+/* ── Navigation tabs ── */
+.nav-bar {
+  background: var(--paper2);
+  border-bottom: 1.5px solid var(--rule);
+  display: flex;
+  gap: 0;
+  padding: 0 3rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-tab {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.25rem;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--ink3);
+  border-bottom: 2.5px solid transparent;
+  margin-bottom: -1.5px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.nav-tab:hover { color: var(--ink2); }
+.nav-tab.active { color: var(--ink); border-bottom-color: var(--accent); }
+
+/* ── Main content ── */
+.main { max-width: 900px; margin: 0 auto; padding: 2.5rem 3rem 4rem; }
+
+.section { display: none; }
+.section.active { display: block; }
+
+/* ── Typography ── */
+h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 2rem 0 0.75rem;
+  color: var(--ink);
+}
+h2:first-child { margin-top: 0; }
+h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+  color: var(--ink);
+}
+p { margin-bottom: 0.7rem; }
+.muted { color: var(--ink3); font-size: 13px; }
+
+/* ── Divider ── */
+.rule { border: none; border-top: 1px solid var(--rule); margin: 2rem 0; }
+
+/* ── Stat row ── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 1.75rem;
+}
+.stat-box {
+  background: var(--paper2);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  text-align: center;
+}
+.stat-n {
+  font-family: 'Fraunces', serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+}
+.stat-lbl { font-size: 12px; color: var(--ink3); margin-top: 4px; }
+
+/* ── Alert boxes ── */
+.alert {
+  border-radius: 0 8px 8px 0;
+  padding: 0.85rem 1.1rem;
+  margin: 0.75rem 0 1.25rem;
+  font-size: 13.5px;
+}
+.alert-warn { background: var(--amber-bg); border-left: 3px solid var(--amber-border); color: var(--amber); }
+.alert-info { background: var(--blue-bg); border-left: 3px solid var(--blue-border); color: var(--blue); }
+.alert-red  { background: var(--red-bg);  border-left: 3px solid var(--red-border);  color: var(--red); }
+.alert-green{ background: var(--green-bg);border-left: 3px solid var(--green-border);color: var(--green); }
+
+/* ── Anatomy rows ── */
+.anatomy-table { border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; margin: 0.75rem 0 1.5rem; }
+.anatomy-row-item { display: flex; align-items: stretch; border-bottom: 1px solid var(--rule); }
+.anatomy-row-item:last-child { border-bottom: none; }
+.anat-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 0.85rem 1rem;
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.03em;
+}
+.anat-desc { font-size: 13.5px; padding: 0.85rem 1.1rem; flex: 1; display: flex; align-items: center; }
+.mark-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  background: rgba(0,0,0,0.08);
+  border-radius: 4px;
+  padding: 2px 7px;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+.anat-loop .anat-label { background: #c0dd97; color: #173404; }
+.anat-loop { background: #eaf3de; }
+.anat-valid .anat-label { background: #b5d4f4; color: #042c53; }
+.anat-valid { background: #e6f1fb; }
+.anat-calc .anat-label { background: #fac775; color: #412402; }
+.anat-calc { background: #faeeda; }
+.anat-out .anat-label { background: #cecbf6; color: #26215c; }
+.anat-out { background: #eeedfe; }
+.anat-comment .anat-label { background: #f5c4b3; color: #4a1b0c; }
+.anat-comment { background: #faece7; }
+
+/* ── Mistake cards ── */
+.mistake-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 0.5rem 0 1.25rem;
+}
+.code-panel {
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  font-size: 12.5px;
+}
+.code-panel-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.wrong-panel { background: var(--red-bg); border: 1px solid var(--red-border); }
+.wrong-panel .code-panel-label { color: var(--red); }
+.right-panel { background: var(--green-bg); border: 1px solid var(--green-border); }
+.right-panel .code-panel-label { color: var(--green); }
+
+/* ── Code / Pre ── */
+pre, code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.75;
+}
+pre {
+  background: var(--ink);
+  color: #e8e4dc;
+  border-radius: 10px;
+  padding: 1.1rem 1.35rem;
+  overflow-x: auto;
+  margin: 0.75rem 0 1.25rem;
+}
+code {
+  background: var(--paper3);
+  color: var(--ink);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+pre code { background: transparent; color: inherit; padding: 0; font-size: inherit; }
+.cm { color: #7a9a7a; font-style: italic; }
+.kw { color: #f4a261; }
+.str { color: #e9c46a; }
+.num { color: #a8dadc; }
+
+/* ── Scaffold question ── */
+.scaffold-card {
+  background: var(--paper2);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+.sc-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--blue);
+  background: var(--blue-bg);
+  border-radius: 4px;
+  padding: 2px 8px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+.q-prompt {
+  background: var(--paper3);
+  border-radius: 6px;
+  padding: 0.7rem 0.9rem;
+  font-size: 13.5px;
+  margin: 0.5rem 0;
+}
+.toggle-btn {
+  width: 100%;
+  text-align: left;
+  padding: 7px 12px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink3);
+  margin-top: 6px;
+  transition: background 0.12s;
+}
+.toggle-btn:hover { background: var(--paper3); }
+.answer-reveal {
+  display: none;
+  background: var(--green-bg);
+  border-left: 3px solid var(--green-border);
+  border-radius: 0 6px 6px 0;
+  padding: 0.75rem 1rem;
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--green);
+}
+
+/* ── Checklist ── */
+.checklist { margin: 0.5rem 0 1rem; }
+.cl-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 13.5px;
+  cursor: pointer;
+}
+.cl-item:last-child { border-bottom: none; }
+.cl-item input[type=checkbox] {
+  width: 16px; height: 16px;
+  cursor: pointer;
+  accent-color: var(--green);
+  flex-shrink: 0;
+}
+.cl-item label { cursor: pointer; flex: 1; }
+.cl-done label { text-decoration: line-through; color: var(--ink3); }
+
+.progress-wrap {
+  background: var(--paper3);
+  border-radius: 6px;
+  height: 7px;
+  margin: 0.75rem 0;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 7px;
+  background: var(--green);
+  border-radius: 6px;
+  transition: width 0.35s ease;
+}
+.progress-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--ink3);
+  margin-bottom: 4px;
+}
+
+/* ── Practice scenario ── */
+.scenario-box {
+  background: var(--blue-bg);
+  border: 1px solid var(--blue-border);
+  border-radius: 10px;
+  padding: 1.1rem 1.35rem;
+  font-size: 13.5px;
+  color: var(--blue);
+  margin: 0.75rem 0 1.25rem;
+  line-height: 1.7;
+}
+
+/* ── Mark scheme section ── */
+.ms-header-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--red);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+.ms-block {
+  background: var(--red-bg);
+  border-left: 3px solid var(--red-border);
+  border-radius: 0 8px 8px 0;
+  padding: 0.85rem 1.1rem;
+  margin: 0.5rem 0 1.25rem;
+  font-size: 13px;
+  color: #501313;
+}
+.ms-block .award { font-weight: 600; margin-bottom: 6px; }
+.ms-block ul { padding-left: 1.25rem; margin-top: 4px; }
+.ms-block li { margin-bottom: 5px; }
+.ms-note { font-size: 11.5px; font-style: italic; margin-top: 8px; color: var(--red); }
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-right: 8px;
+}
+.sb-loop   { background: #eaf3de; color: #27500A; }
+.sb-valid  { background: #e6f1fb; color: #0C447C; }
+.sb-calc   { background: #faeeda; color: #412402; }
+.sb-out    { background: #eeedfe; color: #26215C; }
+.sb-comment{ background: #faece7; color: #4A1B0C; }
+
+.marks-float {
+  float: right;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  background: var(--paper2);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 2px 8px;
+  color: var(--ink3);
+}
+
+/* ── Band table ── */
+.band-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 0.75rem 0 1.5rem; }
+.band-table th { background: var(--paper2); font-weight: 600; text-align: left; padding: 8px 12px; border: 1px solid var(--rule); }
+.band-table td { padding: 8px 12px; border: 1px solid var(--rule); vertical-align: top; }
+.band-13 { color: #2d6a4f; font-weight: 600; }
+.band-9  { color: #185FA5; font-weight: 600; }
+.band-5  { color: #7a4a00; font-weight: 600; }
+.band-0  { color: #A32D2D; font-weight: 600; }
+
+/* ── Totals bar ── */
+.totals-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--paper2);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 1rem 1.35rem;
+  margin: 0 0 1.75rem;
+}
+.totals-big {
+  font-family: 'Fraunces', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #185FA5;
+}
+.totals-lbl { font-size: 12px; color: var(--ink3); }
+.breakdown-col { font-size: 12.5px; }
+.bd-row { display: flex; justify-content: space-between; gap: 2rem; padding: 4px 0; border-bottom: 1px solid var(--rule); }
+.bd-row:last-child { border-bottom: none; }
+.bd-lbl { color: var(--ink3); }
+.bd-val { font-weight: 600; }
+
+/* ── Footer ── */
+.page-footer {
+  text-align: center;
+  padding: 2rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--ink3);
+  border-top: 1px solid var(--rule);
+  letter-spacing: 0.05em;
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar { display: none; }
+  .section { display: block !important; }
+  .page-header::before, .page-header::after { display: none; }
+  .toggle-btn { display: none; }
+  .answer-reveal { display: block !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="header-eyebrow">Cambridge IGCSE · Computer Science 0478 · Paper 2</div>
+  <h1 class="header-title">15-Mark Programming Question<br>Remediation Worksheet</h1>
+  <div class="header-sub">Nested loops · 2D arrays · Validation · Accumulation · Output messages</div>
+  <div class="header-pills">
+    <span class="pill">Recovery resource</span>
+    <span class="pill">Mock 2026</span>
+    <span class="pill">Pseudocode &amp; program code</span>
+    <span class="pill">Car park + hotel scenarios</span>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav-bar">
+  <button class="nav-tab active" onclick="showTab(this,'tab-question')">0 · Question</button>
+  <button class="nav-tab" onclick="showTab(this,'tab-anatomy')">1 · Anatomy</button>
+  <button class="nav-tab" onclick="showTab(this,'tab-mistakes')">2 · Mistakes</button>
+  <button class="nav-tab" onclick="showTab(this,'tab-q10ms')">3 · Q10 Mark Scheme</button>
+  <button class="nav-tab" onclick="showTab(this,'tab-practice')">4 · Practice Q</button>
+  <button class="nav-tab" onclick="showTab(this,'tab-structure')">5 · Structure</button>
+  <button class="nav-tab" onclick="showTab(this,'tab-scaffold')">6 · Scaffold</button>
+  <button class="nav-tab" onclick="showTab(this,'tab-checklist')">7 · Checklist</button>
+  <button class="nav-tab" onclick="showTab(this,'tab-markscheme')">8 · Mark Scheme</button>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- ════════════════════════════════════════
+     TAB 0 — QUESTION SCENARIO
+     ════════════════════════════════════════ -->
+<section id="tab-question" class="section active">
+
+  <h2>Question 10 — your mock paper (Q10, Paper 2, 2026)</h2>
+  <p class="muted">Read the full question carefully before looking at any other tab. Annotate the requirements as you read.</p>
+
+  <div class="alert alert-warn" style="margin-bottom:1.5rem">
+    This is the question your cohort sat. Most students either left it blank or stopped after the first few lines. Work through tabs 1–6 to understand exactly why — then use tabs 7 and 8 for the hotel practice question and its mark scheme.
+  </div>
+
+  <!-- Question box styled to resemble exam paper -->
+  <div style="border:2px solid var(--ink);border-radius:10px;overflow:hidden;margin-bottom:1.5rem">
+
+    <!-- Q number bar -->
+    <div style="background:var(--ink);color:var(--paper);padding:0.6rem 1.25rem;display:flex;justify-content:space-between;align-items:center">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;letter-spacing:0.05em">QUESTION 10</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#aaa;letter-spacing:0.08em">CAMBRIDGE IGCSE COMPUTER SCIENCE 0478/22 · MOCK 2026</span>
+    </div>
+
+    <!-- Scenario text -->
+    <div style="padding:1.35rem 1.5rem;background:#fff;border-bottom:1.5px solid var(--rule)">
+      <p style="margin-bottom:0.9rem">A city car park has <strong>50 parking spaces</strong>. The management wants a program to record and analyse the usage of these spaces over a <strong>5-day working week</strong> (Monday to Friday).</p>
+      <p style="margin-bottom:0.9rem">The following data structures are used:</p>
+      <ul style="padding-left:1.4rem;margin-bottom:0.9rem;line-height:1.9">
+        <li>A one-dimensional (1D) array <code>RegPlate[]</code> contains the <strong>registration numbers</strong> of the cars assigned to the 50 spaces.</li>
+        <li>A two-dimensional (2D) array <code>WeeklyUsage[]</code> is used to store the <strong>number of hours each space was occupied</strong> for each of the five days.</li>
+        <li>A 1D array <code>TotalFeePerSpace[]</code> is used to store the <strong>total weekly parking fee</strong> calculated for each space.</li>
+      </ul>
+    </div>
+
+    <!-- Requirements -->
+    <div style="padding:1.35rem 1.5rem;background:#fff;border-bottom:1.5px solid var(--rule)">
+      <p style="font-weight:600;margin-bottom:0.75rem">Write a program that meets the following requirements:</p>
+      <ol style="padding-left:1.4rem;line-height:2;font-size:14px">
+        <li>Allows the number of hours parked to be <strong>input and validated</strong> for every space for each of the five days.<br>
+            <span style="font-size:12.5px;color:var(--ink3)">The validation must ensure the number of hours is between <strong>1 and 12 inclusive</strong> for any single day.</span></li>
+        <li>Calculates the <strong>total weekly fee</strong> for each space based on a rate of <strong>$3.50 per hour</strong> and stores it in the <code>TotalFeePerSpace[]</code> array.</li>
+        <li>Calculates the <strong>total weekly revenue</strong> collected by the car park for all 50 spaces over the 5 days.</li>
+        <li>Finds and outputs the <strong>space number and registration number</strong> of the car(s) that had the <strong>highest total number of hours</strong> parked for the week.</li>
+        <li>Outputs for each space: the <strong>space number</strong>, the <strong>registration number</strong>, the <strong>total weekly fee</strong> calculated, with a suitable message.</li>
+        <li>Outputs the <strong>total weekly revenue</strong> for the entire car park.</li>
+      </ol>
+    </div>
+
+    <!-- Notes -->
+    <div style="padding:0.9rem 1.5rem;background:var(--paper2);border-bottom:1.5px solid var(--rule);font-size:13px;color:var(--ink2)">
+      <p style="margin-bottom:4px">You do not need to declare any arrays or variables as you may assume they have already been initialised.</p>
+      <p style="margin-bottom:0">You must use <strong>pseudocode or program code</strong> and add <strong>comments</strong> to explain how your code works. All inputs and outputs must contain suitable messages.</p>
+    </div>
+
+    <!-- Marks -->
+    <div style="padding:0.75rem 1.5rem;background:var(--ink);display:flex;justify-content:flex-end;align-items:center;gap:10px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#aaa">Total marks for this question</span>
+      <span style="font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:#fff">[15]</span>
+    </div>
+  </div>
+
+  <!-- Annotated breakdown -->
+  <h2>Read the question — annotate as you go</h2>
+  <p style="font-size:13.5px;margin-bottom:1rem">Every sentence in the question maps to a mark cluster. Here is what a high-scoring student underlines:</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem">
+
+    <div style="background:var(--green-bg);border:1px solid var(--green-border);border-radius:8px;padding:0.85rem 1rem;font-size:13px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;color:var(--green);margin-bottom:6px;letter-spacing:0.08em">LOOP TRIGGER</div>
+      <p style="margin-bottom:4px;color:var(--green)">"<em>50 parking spaces … 5-day working week</em>"</p>
+      <p style="color:var(--ink2);margin:0;font-size:12.5px">→ Nested FOR loop: Space 1–50, Day 1–5. Two counters. These are your array bounds.</p>
+    </div>
+
+    <div style="background:var(--blue-bg);border:1px solid var(--blue-border);border-radius:8px;padding:0.85rem 1rem;font-size:13px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;color:var(--blue);margin-bottom:6px;letter-spacing:0.08em">VALIDATION TRIGGER</div>
+      <p style="margin-bottom:4px;color:var(--blue)">"<em>between 1 and 12 inclusive</em>"</p>
+      <p style="color:var(--ink2);margin:0;font-size:12.5px">→ WHILE loop. Condition: Hours &lt; 1 OR Hours &gt; 12. Must re-prompt — IF is not enough.</p>
+    </div>
+
+    <div style="background:var(--amber-bg);border:1px solid var(--amber-border);border-radius:8px;padding:0.85rem 1rem;font-size:13px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;color:var(--amber);margin-bottom:6px;letter-spacing:0.08em">CALCULATION TRIGGER</div>
+      <p style="margin-bottom:4px;color:var(--amber)">"<em>$3.50 per hour … TotalFeePerSpace[]</em>"</p>
+      <p style="color:var(--ink2);margin:0;font-size:12.5px">→ Accumulate inside inner loop. += pattern. Store result in 1D array indexed by space.</p>
+    </div>
+
+    <div style="background:var(--purple-bg);border:1px solid var(--purple-border);border-radius:8px;padding:0.85rem 1rem;font-size:13px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;color:var(--purple);margin-bottom:6px;letter-spacing:0.08em">OUTPUT TRIGGER × 3</div>
+      <p style="margin-bottom:4px;color:var(--purple)">"<em>space number … registration … fee … total revenue … highest hours</em>"</p>
+      <p style="color:var(--ink2);margin:0;font-size:12.5px">→ Per-space output loop + max-finding logic + two final summary outputs. All need messages.</p>
+    </div>
+
+  </div>
+
+  <div class="alert alert-info">
+    <strong>Exam technique:</strong> Before writing any code, spend 2 minutes writing three headings on your answer page — <em>Section A: Input</em>, <em>Section B: Calculate</em>, <em>Section C: Output</em>. This structure signals to the examiner that you understand the question, and it keeps you from losing marks by writing output code before your calculation loop is complete.
+  </div>
+
+  <p style="margin-top:1.25rem;font-size:13.5px">Ready to understand exactly how the marks are allocated? Go to <strong>tab 1 — Anatomy</strong>, then <strong>tab 3 — Q10 Mark Scheme</strong> to check your own attempt.</p>
+
+</section>
+
+
+<section id="tab-anatomy" class="section">
+
+  <h2>Why 15 marks feels like a wall</h2>
+  <p>The question is structured as one paragraph. Underneath it are <strong>five independent mark clusters</strong>. Students who freeze at the opening line never claim the marks that sit further down — even though those marks are accessible without completing the earlier sections.</p>
+
+  <div class="stat-row">
+    <div class="stat-box">
+      <div class="stat-n" style="color:#185FA5">15</div>
+      <div class="stat-lbl">marks available</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-n" style="color:#2d6a4f">5</div>
+      <div class="stat-lbl">independent clusters</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-n" style="color:#7a4a00">~45</div>
+      <div class="stat-lbl">minutes recommended</div>
+    </div>
+  </div>
+
+  <div class="alert alert-warn">
+    <strong>Cambridge marking is point-based, not holistic.</strong> Each bullet in the mark scheme is independent. A student who skips the input loop entirely can still score 7–8 marks by writing correct calculation and output code. Never leave sections blank.
+  </div>
+
+  <h2>The five mark clusters — Q10 car park (your mock)</h2>
+
+  <div class="anatomy-table">
+    <div class="anatomy-row-item anat-loop">
+      <div class="anat-label">Nested loops</div>
+      <div class="anat-desc">
+        FOR each of 50 spaces → FOR each of 5 days → input hours. Two counters: <code>Space</code> and <code>Day</code>.
+        <span class="mark-tag">3 marks</span>
+      </div>
+    </div>
+    <div class="anatomy-row-item anat-valid">
+      <div class="anat-label">Validation</div>
+      <div class="anat-desc">
+        Hours between 1 and 12 inclusive. WHILE hours &lt; 1 OR hours &gt; 12 → reject and re-prompt until valid.
+        <span class="mark-tag">2 marks</span>
+      </div>
+    </div>
+    <div class="anatomy-row-item anat-calc">
+      <div class="anat-label">Fee calculation</div>
+      <div class="anat-desc">
+        Accumulate WeeklyUsage[Space][Day] across all 5 days × $3.50 into TotalFeePerSpace[Space]. Also accumulate TotalRevenue.
+        <span class="mark-tag">3 marks</span>
+      </div>
+    </div>
+    <div class="anatomy-row-item anat-out">
+      <div class="anat-label">Find max &amp; output</div>
+      <div class="anat-desc">
+        Track highest total hours. Output space number + registration plate. Output each space's details. Output total revenue.
+        <span class="mark-tag">4 marks</span>
+      </div>
+    </div>
+    <div class="anatomy-row-item anat-comment">
+      <div class="anat-label">Comments &amp; messages</div>
+      <div class="anat-desc">
+        Every INPUT and OUTPUT must include a suitable message. At least 2–3 inline comments explaining logic sections.
+        <span class="mark-tag">3 marks</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════════════════════════════════════════
+     TAB 2 — MISTAKES
+     ════════════════════════════════════════ -->
+<section id="tab-mistakes" class="section">
+
+  <h2>The six most common errors</h2>
+  <p class="muted">These errors account for the majority of marks lost across the cohort on every Paper 2 session.</p>
+
+  <hr class="rule">
+
+  <h3>Mistake 1 — Treating WeeklyUsage as a 1D array &nbsp;<span style="font-size:12px;color:var(--red);font-weight:600">typically −3 marks</span></h3>
+  <div class="mistake-pair">
+    <div class="code-panel wrong-panel">
+      <div class="code-panel-label">✗ Wrong — 1D access; only one index used</div>
+      <pre style="background:transparent;color:var(--red);padding:0;border-radius:0;margin:0;font-size:12px"><code>WeeklyUsage[Space] ← Hours
+
+TotalFeePerSpace[Space] ←
+  TotalFeePerSpace[Space] +
+  (WeeklyUsage[Space] * 3.50)</code></pre>
+    </div>
+    <div class="code-panel right-panel">
+      <div class="code-panel-label">✓ Correct — 2D access; Space and Day both indexed</div>
+      <pre style="background:transparent;color:var(--green);padding:0;border-radius:0;margin:0;font-size:12px"><code>WeeklyUsage[Space][Day] ← Hours
+
+TotalFeePerSpace[Space] ←
+  TotalFeePerSpace[Space] +
+  (WeeklyUsage[Space][Day] * 3.50)</code></pre>
+    </div>
+  </div>
+  <p class="muted"><code>WeeklyUsage</code> stores hours for <strong>every space across every day</strong> — it needs two indices: the space number and the day number. A 1D interpretation can only hold one value per space, so it gets overwritten on every day of the inner loop and the weekly total is always wrong. The inner <code>FOR Day</code> loop becomes meaningless without <code>[Day]</code> as the second index — which is usually the point where examiners stop awarding marks for the calculation section.</p>
+
+  <hr class="rule">
+
+  <h3>Mistake 2 — Wrong loop order and wrong bounds &nbsp;<span style="font-size:12px;color:var(--red);font-weight:600">typically −3 marks</span></h3>
+  <div class="mistake-pair">
+    <div class="code-panel wrong-panel">
+      <div class="code-panel-label">✗ Wrong — Day loop is outer; Space bound is 1–12</div>
+      <pre style="background:transparent;color:var(--red);padding:0;border-radius:0;margin:0;font-size:12px"><code>FOR Day ← 1 TO 5
+  FOR Space ← 1 TO 12</code></pre>
+    </div>
+    <div class="code-panel right-panel">
+      <div class="code-panel-label">✓ Correct — Space is outer; Day is inner; bounds match array</div>
+      <pre style="background:transparent;color:var(--green);padding:0;border-radius:0;margin:0;font-size:12px"><code>FOR Space ← 1 TO 50
+  FOR Day ← 1 TO 5</code></pre>
+    </div>
+  </div>
+  <p class="muted">The outer loop must iterate spaces (50) and the inner loop days (5) — this mirrors how <code>WeeklyUsage[Space][Day]</code> is indexed. Swapping the loops means the array is traversed in the wrong dimension. Using 1–12 for the space bound confuses the hour validation range (1–12) with the number of spaces (50) — a different part of the question entirely.</p>
+
+  <hr class="rule">
+
+  <h3>Mistake 3 — IF instead of WHILE for validation &nbsp;<span style="font-size:12px;color:var(--red);font-weight:600">−2 marks</span></h3>
+  <div class="mistake-pair">
+    <div class="code-panel wrong-panel">
+      <div class="code-panel-label">✗ Checks once — fails if user enters bad data twice</div>
+      <pre style="background:transparent;color:var(--red);padding:0;border-radius:0;margin:0;font-size:12px"><code>Hours ← USERINPUT
+IF Hours &lt; 1 OR Hours &gt; 12
+  THEN OUTPUT "Invalid"
+ENDIF</code></pre>
+    </div>
+    <div class="code-panel right-panel">
+      <div class="code-panel-label">✓ Keeps re-asking until valid</div>
+      <pre style="background:transparent;color:var(--green);padding:0;border-radius:0;margin:0;font-size:12px"><code>Hours ← USERINPUT
+WHILE Hours &lt; 1 OR Hours &gt; 12
+  OUTPUT "Enter 1–12: "
+  Hours ← USERINPUT
+ENDWHILE</code></pre>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <h3>Mistake 4 — Overwriting instead of accumulating the fee &nbsp;<span style="font-size:12px;color:var(--red);font-weight:600">−2 marks</span></h3>
+  <div class="mistake-pair">
+    <div class="code-panel wrong-panel">
+      <div class="code-panel-label">✗ Overwrites — only keeps the last day's fee</div>
+      <pre style="background:transparent;color:var(--red);padding:0;border-radius:0;margin:0;font-size:12px"><code>TotalFeePerSpace[Space] ←
+  WeeklyUsage[Space][Day] * 3.50</code></pre>
+    </div>
+    <div class="code-panel right-panel">
+      <div class="code-panel-label">✓ Accumulates all 5 days</div>
+      <pre style="background:transparent;color:var(--green);padding:0;border-radius:0;margin:0;font-size:12px"><code>TotalFeePerSpace[Space] ←
+  TotalFeePerSpace[Space] +
+  (WeeklyUsage[Space][Day] * 3.50)</code></pre>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <h3>Mistake 5 — Output with no message &nbsp;<span style="font-size:12px;color:var(--red);font-weight:600">−1 per bare output</span></h3>
+  <div class="mistake-pair">
+    <div class="code-panel wrong-panel">
+      <div class="code-panel-label">✗ Bare — fails the "suitable message" criterion</div>
+      <pre style="background:transparent;color:var(--red);padding:0;border-radius:0;margin:0;font-size:12px"><code>OUTPUT TotalFeePerSpace[Space]</code></pre>
+    </div>
+    <div class="code-panel right-panel">
+      <div class="code-panel-label">✓ Message + identifier + value</div>
+      <pre style="background:transparent;color:var(--green);padding:0;border-radius:0;margin:0;font-size:12px"><code>OUTPUT "Space ", Space,
+  " weekly fee: $",
+  TotalFeePerSpace[Space]</code></pre>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <h3>Mistake 6 — Finding the maximum inside the wrong loop &nbsp;<span style="font-size:12px;color:var(--red);font-weight:600">−2 marks</span></h3>
+  <div class="alert alert-info">
+    You need a <em>second pass</em> after all fees are calculated. Students who try to find the max inside the input loop compare partially-calculated values — the result is wrong.
+  </div>
+  <pre><code><span class="cm">// Correct: separate pass after fee calculation is complete</span>
+MaxHours ← 0
+MaxSpace ← 0
+<span class="kw">FOR</span> Space ← 1 <span class="kw">TO</span> 50
+   TotalHours ← 0
+   <span class="kw">FOR</span> Day ← 1 <span class="kw">TO</span> 5
+      TotalHours ← TotalHours + WeeklyUsage[Space][Day]
+   <span class="kw">NEXT</span> Day
+   <span class="kw">IF</span> TotalHours &gt; MaxHours <span class="kw">THEN</span>
+      MaxHours ← TotalHours
+      MaxSpace ← Space
+   <span class="kw">ENDIF</span>
+<span class="kw">NEXT</span> Space
+OUTPUT <span class="str">"Highest usage: Space " &amp; MaxSpace &amp; " (" &amp; RegPlate[MaxSpace] &amp; ")"</span></code></pre>
+
+</section>
+
+<!-- ════════════════════════════════════════
+     TAB 3 — Q10 MARK SCHEME (CAR PARK)
+     ════════════════════════════════════════ -->
+<section id="tab-q10ms" class="section">
+
+  <h2>Mark scheme — Q10 car park (your mock paper)</h2>
+  <p class="muted">Cambridge IGCSE Computer Science 0478/22 · Mock 2026 · 15 marks</p>
+
+  <div class="totals-bar">
+    <div>
+      <div class="totals-lbl">Total available</div>
+      <div class="totals-big">15</div>
+    </div>
+    <div class="breakdown-col">
+      <div class="bd-row"><span class="bd-lbl">Input &amp; validation loop</span><span class="bd-val" style="margin-left:2rem">5</span></div>
+      <div class="bd-row"><span class="bd-lbl">Fee calculation</span><span class="bd-val" style="margin-left:2rem">3</span></div>
+      <div class="bd-row"><span class="bd-lbl">Max, output &amp; total revenue</span><span class="bd-val" style="margin-left:2rem">4</span></div>
+      <div class="bd-row"><span class="bd-lbl">Comments &amp; suitable messages</span><span class="bd-val" style="margin-left:2rem">3</span></div>
+    </div>
+  </div>
+
+  <h3>Full model pseudocode — car park scenario</h3>
+
+  <pre><code><span class="cm">// SECTION A — input and validate hours for all 50 spaces over 5 days</span>
+<span class="kw">FOR</span> Space ← <span class="num">1</span> <span class="kw">TO</span> <span class="num">50</span>
+   <span class="kw">FOR</span> Day ← <span class="num">1</span> <span class="kw">TO</span> <span class="num">5</span>
+      OUTPUT <span class="str">"Enter hours for space "</span> &amp; Space &amp; <span class="str">" on day "</span> &amp; Day &amp; <span class="str">": "</span>
+      Hours ← USERINPUT
+      <span class="kw">WHILE</span> Hours &lt; <span class="num">1</span> <span class="kw">OR</span> Hours &gt; <span class="num">12</span>
+         OUTPUT <span class="str">"Invalid. Enter hours between 1 and 12: "</span>
+         Hours ← USERINPUT
+      <span class="kw">ENDWHILE</span>
+      WeeklyUsage[Space][Day] ← Hours
+   <span class="kw">NEXT</span> Day
+<span class="kw">NEXT</span> Space
+
+<span class="cm">// SECTION B — calculate weekly fee per space and total revenue</span>
+TotalRevenue ← <span class="num">0</span>
+<span class="kw">FOR</span> Space ← <span class="num">1</span> <span class="kw">TO</span> <span class="num">50</span>
+   TotalFeePerSpace[Space] ← <span class="num">0</span>
+   <span class="kw">FOR</span> Day ← <span class="num">1</span> <span class="kw">TO</span> <span class="num">5</span>
+      TotalFeePerSpace[Space] ← TotalFeePerSpace[Space] + (WeeklyUsage[Space][Day] * <span class="num">3.50</span>)
+   <span class="kw">NEXT</span> Day
+   TotalRevenue ← TotalRevenue + TotalFeePerSpace[Space]
+<span class="kw">NEXT</span> Space
+
+<span class="cm">// SECTION C — find space with highest hours, output all spaces, output total</span>
+MaxHours ← <span class="num">0</span>
+MaxSpace ← <span class="num">0</span>
+<span class="kw">FOR</span> Space ← <span class="num">1</span> <span class="kw">TO</span> <span class="num">50</span>
+   TotalHours ← <span class="num">0</span>
+   <span class="kw">FOR</span> Day ← <span class="num">1</span> <span class="kw">TO</span> <span class="num">5</span>
+      TotalHours ← TotalHours + WeeklyUsage[Space][Day]
+   <span class="kw">NEXT</span> Day
+   <span class="kw">IF</span> TotalHours &gt; MaxHours <span class="kw">THEN</span>
+      MaxHours ← TotalHours
+      MaxSpace ← Space
+   <span class="kw">ENDIF</span>
+   OUTPUT <span class="str">"Space: "</span> &amp; Space &amp; <span class="str">" | Plate: "</span> &amp; RegPlate[Space] &amp; <span class="str">" | Fee: $"</span> &amp; TotalFeePerSpace[Space]
+<span class="kw">NEXT</span> Space
+
+OUTPUT <span class="str">"Highest usage — Space: "</span> &amp; MaxSpace &amp; <span class="str">" ("</span> &amp; RegPlate[MaxSpace] &amp; <span class="str">") — "</span> &amp; MaxHours &amp; <span class="str">" hours"</span>
+OUTPUT <span class="str">"Total weekly revenue: $"</span> &amp; TotalRevenue</code></pre>
+
+  <hr class="rule">
+
+  <div class="ms-header-label">MARKSCHEME</div>
+
+  <h3><span class="section-badge sb-loop">Section A</span> Input &amp; validation loop <span class="marks-float">5 marks</span></h3>
+  <div style="clear:both"></div>
+  <div class="ms-block">
+    <div class="award">Award [5 max]</div>
+    <ul>
+      <li>Outer FOR loop correctly bounded: <code>Space ← 1 TO 50</code> <em>[1]</em></li>
+      <li>Inner FOR loop correctly bounded: <code>Day ← 1 TO 5</code> <em>[1]</em></li>
+      <li>USERINPUT assigned to a named variable before validation begins <em>[1]</em></li>
+      <li>WHILE loop (not IF) used for validation with correct condition: <code>Hours &lt; 1 OR Hours &gt; 12</code> <em>[1]</em></li>
+      <li>Re-prompt inside WHILE body; input re-read; value stored in <code>WeeklyUsage[Space][Day]</code> <em>[1]</em></li>
+    </ul>
+    <div class="ms-note">Accept REPEAT…UNTIL or DO…WHILE with logically equivalent condition. Accept any valid variable names. Do not award the validation mark for an IF-only check — a single conditional cannot guarantee valid data on repeated bad input.</div>
+  </div>
+
+  <div class="alert alert-warn">
+    Examiner note — most commonly dropped marks: (a) <code>Day ← 0 TO 4</code> instead of 1 TO 5; (b) <code>Space ← 1 TO 49</code>; (c) IF instead of WHILE. Correct condition inside an IF still scores 0 for the validation mark.
+  </div>
+
+  <h3><span class="section-badge sb-calc">Section B</span> Fee calculation <span class="marks-float">3 marks</span></h3>
+  <div style="clear:both"></div>
+  <div class="ms-block">
+    <div class="award">Award [3 max]</div>
+    <ul>
+      <li>Correct accumulation inside inner loop: <code>TotalFeePerSpace[Space] ← TotalFeePerSpace[Space] + (WeeklyUsage[Space][Day] * 3.50)</code> <em>[1]</em></li>
+      <li><code>TotalFeePerSpace[Space]</code> initialised to 0 before the inner loop <em>[1]</em></li>
+      <li><code>TotalRevenue</code> accumulated outside the inner loop but inside or after the outer loop <em>[1]</em></li>
+    </ul>
+    <div class="ms-note">Rate must be 3.50 as stated in the question. Do not award the accumulation mark if the assignment overwrites (<code>TotalFeePerSpace[Space] ← WeeklyUsage[Space][Day] * 3.50</code>) rather than adds — this keeps only the last day's value and is a fundamental logic error.</div>
+  </div>
+
+  <div class="alert alert-red">
+    Common error: <code>TotalFeePerSpace[Space] ← WeeklyUsage[Space][Day] * 3.50</code> — overwrites every iteration. Scores 0 for the accumulation mark even if the rate is correct.
+  </div>
+
+  <h3><span class="section-badge sb-out">Section C</span> Max hours, per-space output &amp; total revenue <span class="marks-float">4 marks</span></h3>
+  <div style="clear:both"></div>
+  <div class="ms-block">
+    <div class="award">Award [4 max]</div>
+    <ul>
+      <li><code>MaxHours</code> and <code>MaxSpace</code> initialised before the comparison loop <em>[1]</em></li>
+      <li>Correct IF comparison <code>TotalHours &gt; MaxHours</code> updating both <code>MaxHours</code> and <code>MaxSpace</code> <em>[1]</em></li>
+      <li>Each space's number, registration plate, and fee output with a suitable message <em>[1]</em></li>
+      <li>Space with highest hours output (with registration plate); total revenue output — both with suitable messages <em>[1]</em></li>
+    </ul>
+    <div class="ms-note">The max-hours comparison requires summing hours across all 5 days per space — not comparing TotalFeePerSpace directly (though that would produce the same ranking). Accept max-finding in a separate loop or combined with the output loop if logically correct. MaxHours initialised to −1 or to the first element are both acceptable.</div>
+  </div>
+
+  <h3><span class="section-badge sb-comment">Comments &amp; messages</span> <span class="marks-float">3 marks</span></h3>
+  <div style="clear:both"></div>
+  <div class="ms-block">
+    <div class="award">Award [3 max]</div>
+    <ul>
+      <li>At least one meaningful inline comment explaining a non-obvious block of code <em>[1]</em></li>
+      <li>All INPUT statements include a message that identifies the space number and day being requested <em>[1]</em></li>
+      <li>All OUTPUT statements include contextual labels — bare numeric output scores 0 for that line <em>[1]</em></li>
+    </ul>
+    <div class="ms-note">These 3 marks are frequently the easiest in the question and the most often missed. A structurally correct response with no messages or comments is capped at 12/15.</div>
+  </div>
+
+  <hr class="rule">
+
+  <h2>Mark boundary guidance</h2>
+
+  <table class="band-table">
+    <thead>
+      <tr>
+        <th style="width:110px">Range</th>
+        <th>Descriptor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="band-13">13 – 15</td>
+        <td>All three sections present and largely correct. Validation uses WHILE. Accumulation uses += pattern. All inputs and outputs carry suitable messages. Minor pseudocode syntax errors tolerated.</td>
+      </tr>
+      <tr>
+        <td class="band-9">9 – 12</td>
+        <td>Most sections attempted. One or two structural errors (IF instead of WHILE, overwrite instead of accumulate). Most messages present. Max-finding attempted but may contain a logic error.</td>
+      </tr>
+      <tr>
+        <td class="band-5">5 – 8</td>
+        <td>Loops attempted but bounds incorrect or one loop missing. Validation absent or IF-only. Fee calculation partially correct. Some output attempted with partial messages.</td>
+      </tr>
+      <tr>
+        <td class="band-0">0 – 4</td>
+        <td>Only isolated fragments. Fewer than three independent correct mark-points across the whole response. No coherent section structure visible.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert-info">
+    <strong>Point-based marking reminder:</strong> each bullet above is an independently awardable mark. A student who writes only Section C correctly — and leaves Sections A and B blank — can still earn 4 marks. Partial attempts always outscore blank pages.
+  </div>
+
+</section>
+
+<!-- ════════════════════════════════════════
+     TAB 4 — STRUCTURE DIAGRAM
+     ════════════════════════════════════════ -->
+<section id="tab-structure" class="section">
+
+  <h2>Three-section planning skeleton</h2>
+  <p>Draw this on your planning space before writing any code. Examiners reward structured responses even when individual lines carry minor errors.</p>
+
+  <svg viewBox="0 0 660 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;margin:1rem 0">
+    <defs>
+      <marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+        <path d="M0,0 L0,7 L9,3.5 z" fill="#8a8a84"/>
+      </marker>
+    </defs>
+
+    <!-- Section A header -->
+    <rect x="10" y="10" width="640" height="40" rx="7" fill="#eaf3de" stroke="#97c459" stroke-width="1.5"/>
+    <text x="330" y="35" font-size="13.5" font-weight="600" fill="#173404" text-anchor="middle" font-family="'DM Sans',sans-serif">SECTION A — Input loop: all 20 rooms × 7 nights</text>
+
+    <!-- Section A body -->
+    <rect x="30" y="68" width="600" height="108" rx="6" fill="#eaf3de" stroke="#97c459" stroke-width="1"/>
+    <text x="50" y="90" font-size="12" font-weight="600" fill="#27500A" font-family="'IBM Plex Mono',monospace">FOR Room ← 1 TO 20</text>
+    <rect x="60" y="98" width="550" height="68" rx="4" fill="#c0dd97" stroke="#97c459" stroke-width="0.75"/>
+    <text x="80" y="118" font-size="12" fill="#173404" font-family="'IBM Plex Mono',monospace">  FOR Night ← 1 TO 7</text>
+    <text x="80" y="136" font-size="12" fill="#173404" font-family="'IBM Plex Mono',monospace">    Guests ← INPUT("Room " &amp; Room &amp; " night " &amp; Night)</text>
+    <text x="80" y="154" font-size="11.5" fill="#173404" font-family="'IBM Plex Mono',monospace">    WHILE Guests &lt; 0 OR Guests &gt; 4 → re-prompt  |  NightsOccupied[Room][Night] ← Guests</text>
+
+    <!-- Arrow A→B -->
+    <line x1="330" y1="176" x2="330" y2="200" stroke="#8a8a84" stroke-width="1.5" marker-end="url(#arr)"/>
+
+    <!-- Section B header -->
+    <rect x="10" y="200" width="640" height="40" rx="7" fill="#faeeda" stroke="#fac775" stroke-width="1.5"/>
+    <text x="330" y="225" font-size="13.5" font-weight="600" fill="#412402" text-anchor="middle" font-family="'DM Sans',sans-serif">SECTION B — Fee calculation loop</text>
+
+    <!-- Section B body -->
+    <rect x="30" y="258" width="600" height="92" rx="6" fill="#faeeda" stroke="#ef9f27" stroke-width="1"/>
+    <text x="50" y="278" font-size="12" fill="#412402" font-family="'IBM Plex Mono',monospace">TotalRevenue ← 0</text>
+    <text x="50" y="296" font-size="12" fill="#412402" font-family="'IBM Plex Mono',monospace">FOR Room ← 1 TO 20</text>
+    <text x="50" y="314" font-size="12" fill="#412402" font-family="'IBM Plex Mono',monospace">  RoomFee[Room] ← 0  |  FOR Night ← 1 TO 7</text>
+    <text x="50" y="332" font-size="12" fill="#412402" font-family="'IBM Plex Mono',monospace">    RoomFee[Room] ← RoomFee[Room] + (NightsOccupied[Room][Night] * 85)</text>
+    <text x="50" y="348" font-size="11.5" fill="#412402" font-family="'IBM Plex Mono',monospace">  NEXT Night  →  TotalRevenue ← TotalRevenue + RoomFee[Room]</text>
+
+    <!-- Arrow B→C -->
+    <line x1="330" y1="350" x2="330" y2="375" stroke="#8a8a84" stroke-width="1.5" marker-end="url(#arr)"/>
+
+    <!-- Section C header -->
+    <rect x="10" y="375" width="640" height="40" rx="7" fill="#eeedfe" stroke="#afa9ec" stroke-width="1.5"/>
+    <text x="330" y="400" font-size="13.5" font-weight="600" fill="#26215c" text-anchor="middle" font-family="'DM Sans',sans-serif">SECTION C — Find max · output all rooms · total revenue</text>
+
+    <!-- Section C body -->
+    <rect x="30" y="433" width="600" height="90" rx="6" fill="#e6f1fb" stroke="#85b7eb" stroke-width="1"/>
+    <text x="50" y="453" font-size="12" fill="#042c53" font-family="'IBM Plex Mono',monospace">FOR Room ← 1 TO 20  →  IF RoomFee[Room] &gt; MaxFee THEN update MaxFee, MaxRoom</text>
+    <text x="50" y="471" font-size="12" fill="#042c53" font-family="'IBM Plex Mono',monospace">  OUTPUT "Room " &amp; Room &amp; " weekly fee: $" &amp; RoomFee[Room]</text>
+    <text x="50" y="489" font-size="12" fill="#042c53" font-family="'IBM Plex Mono',monospace">NEXT Room</text>
+    <text x="50" y="507" font-size="12" fill="#042c53" font-family="'IBM Plex Mono',monospace">OUTPUT "Highest revenue: Room " &amp; MaxRoom &amp; " — $" &amp; MaxFee</text>
+    <text x="50" y="525" font-size="12" fill="#042c53" font-family="'IBM Plex Mono',monospace">OUTPUT "Total hotel revenue: $" &amp; TotalRevenue</text>
+  </svg>
+
+  <div class="alert alert-info">
+    Use this diagram as your <strong>30-second plan</strong> at the start of the question. Even just labelling three boxes on your answer sheet shows the examiner you understand the structure — and that earns marks even if subsequent code has errors.
+  </div>
+
+</section>
+
+<!-- ════════════════════════════════════════
+     TAB 4 — SCAFFOLD
+     ════════════════════════════════════════ -->
+<section id="tab-scaffold" class="section">
+
+  <h2>Guided scaffold — fill in the blanks</h2>
+  <p>Attempt each one on paper before revealing the answer.</p>
+
+  <div class="scaffold-card">
+    <span class="sc-tag">4a — outer loop</span>
+    <div class="q-prompt">Write the outer FOR loop that iterates through all 20 hotel rooms.</div>
+    <button class="toggle-btn" onclick="toggleAns(this)">▶ show answer</button>
+    <div class="answer-reveal"><code>FOR Room ← 1 TO 20</code> — 1 to 20 inclusive; not 0 to 19 or 1 to 19.</div>
+  </div>
+
+  <div class="scaffold-card">
+    <span class="sc-tag">4b — inner loop</span>
+    <div class="q-prompt">Write the inner FOR loop that iterates through all 7 nights.</div>
+    <button class="toggle-btn" onclick="toggleAns(this)">▶ show answer</button>
+    <div class="answer-reveal"><code>FOR Night ← 1 TO 7</code> — matches the array declaration NightsOccupied[1:20][1:7].</div>
+  </div>
+
+  <div class="scaffold-card">
+    <span class="sc-tag">4c — validation loop</span>
+    <div class="q-prompt">Write the WHILE loop that validates the number of guests is between 0 and 4 inclusive.</div>
+    <button class="toggle-btn" onclick="toggleAns(this)">▶ show answer</button>
+    <div class="answer-reveal">
+      <pre style="background:transparent;border:none;padding:0;margin:0;color:var(--green);font-size:12px">WHILE Guests &lt; 0 OR Guests &gt; 4
+  OUTPUT "Invalid. Enter 0 to 4: "
+  Guests ← USERINPUT
+ENDWHILE</pre>
+      Must use WHILE (not IF) to score the validation mark.
+    </div>
+  </div>
+
+  <div class="scaffold-card">
+    <span class="sc-tag">4d — fee accumulation</span>
+    <div class="q-prompt">Write the single assignment that accumulates the weekly fee for a room. Rate = $85 per guest per night.</div>
+    <button class="toggle-btn" onclick="toggleAns(this)">▶ show answer</button>
+    <div class="answer-reveal"><code>RoomFee[Room] ← RoomFee[Room] + (NightsOccupied[Room][Night] * 85)</code><br><br>Note the <code>+=</code> pattern — the right-hand side references the current value before adding to it.</div>
+  </div>
+
+  <div class="scaffold-card">
+    <span class="sc-tag">4e — max tracker</span>
+    <div class="q-prompt">Write the IF statement that updates MaxFee and MaxRoom when a new highest is found.</div>
+    <button class="toggle-btn" onclick="toggleAns(this)">▶ show answer</button>
+    <div class="answer-reveal">
+      <pre style="background:transparent;border:none;padding:0;margin:0;color:var(--green);font-size:12px">IF RoomFee[Room] &gt; MaxFee THEN
+  MaxFee ← RoomFee[Room]
+  MaxRoom ← Room
+ENDIF</pre>
+    </div>
+  </div>
+
+  <div class="scaffold-card">
+    <span class="sc-tag">4f — output with message</span>
+    <div class="q-prompt">Write an OUTPUT that displays the room number and its total weekly fee with a suitable message.</div>
+    <button class="toggle-btn" onclick="toggleAns(this)">▶ show answer</button>
+    <div class="answer-reveal"><code>OUTPUT "Room " &amp; Room &amp; " — weekly fee: $" &amp; RoomFee[Room]</code></div>
+  </div>
+
+</section>
+
+<!-- ════════════════════════════════════════
+     TAB 5 — CHECKLIST
+     ════════════════════════════════════════ -->
+<section id="tab-checklist" class="section">
+
+  <h2>Pre-submission checklist</h2>
+  <p>Complete this before putting your pen down. Aim for 8/8.</p>
+
+  <div class="progress-label" id="prog-label">0 / 8 checked</div>
+  <div class="progress-wrap"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+
+  <div class="checklist" id="checklist">
+    <div class="cl-item" id="cli-1"><input type="checkbox" id="c1" onchange="updateChecklist()"><label for="c1">Both FOR loops present with correct bounds (Room 1–20, Night 1–7)</label></div>
+    <div class="cl-item" id="cli-2"><input type="checkbox" id="c2" onchange="updateChecklist()"><label for="c2">Guests stored in NightsOccupied[Room][Night] — 2D array, not a plain variable</label></div>
+    <div class="cl-item" id="cli-3"><input type="checkbox" id="c3" onchange="updateChecklist()"><label for="c3">Validation uses WHILE (not IF) and re-prompts until input is 0–4 inclusive</label></div>
+    <div class="cl-item" id="cli-4"><input type="checkbox" id="c4" onchange="updateChecklist()"><label for="c4">RoomFee[Room] initialised to 0 before the inner accumulation loop</label></div>
+    <div class="cl-item" id="cli-5"><input type="checkbox" id="c5" onchange="updateChecklist()"><label for="c5">Fee uses accumulation pattern (adds to itself) — not a plain assignment</label></div>
+    <div class="cl-item" id="cli-6"><input type="checkbox" id="c6" onchange="updateChecklist()"><label for="c6">TotalRevenue accumulates across all 20 rooms</label></div>
+    <div class="cl-item" id="cli-7"><input type="checkbox" id="c7" onchange="updateChecklist()"><label for="c7">Room with highest fee found and output with suitable message</label></div>
+    <div class="cl-item" id="cli-8"><input type="checkbox" id="c8" onchange="updateChecklist()"><label for="c8">Every INPUT and OUTPUT includes a suitable message; at least 2 comments present</label></div>
+  </div>
+
+  <div id="all-done" style="display:none;margin-top:1rem" class="alert alert-green">
+    <strong>All 8 checks passed.</strong> You understand the structure. Attempt the practice question in tab 6.
+  </div>
+
+</section>
+
+<!-- ════════════════════════════════════════
+     TAB 6 — PRACTICE Q
+     ════════════════════════════════════════ -->
+<section id="tab-practice" class="section">
+
+  <h2>Practice question — new scenario</h2>
+
+  <div class="scenario-box">
+    <p><strong>Hotel room occupancy tracker.</strong></p>
+    <p>A hotel has 20 rooms. A two-dimensional array <code>NightsOccupied[1:20][1:7]</code> stores the number of guests in each room for each of the 7 nights of the week. A 1D array <code>RoomFee[1:20]</code> stores the total weekly fee for each room. The nightly rate is $85 per guest.</p>
+    <p style="margin-bottom:0">Write a program that:</p>
+    <ul style="padding-left:1.25rem;margin-top:0.4rem;margin-bottom:0">
+      <li>Inputs and validates the number of guests (0–4 inclusive) for every room for every night</li>
+      <li>Calculates the total weekly fee for each room</li>
+      <li>Finds and outputs the room with the highest total weekly revenue</li>
+      <li>Outputs each room's number and total fee with a suitable message</li>
+      <li>Outputs the total hotel revenue for the week</li>
+    </ul>
+    <p style="margin-top:0.6rem;margin-bottom:0;font-size:12.5px;font-style:italic">You do not need to declare arrays. You may assume they are already initialised. Add comments to explain your code.</p>
+  </div>
+
+  <div class="alert alert-warn">
+    Plan the three sections on paper first (see tab 3). Write pseudocode. Then check against tab 5. The model answer and full mark scheme are in tab 7.
+  </div>
+
+  <h3>Marks breakdown</h3>
+  <div class="anatomy-table">
+    <div class="anatomy-row-item anat-loop">
+      <div class="anat-label">Loops &amp; input</div>
+      <div class="anat-desc">Nested FOR loops (Room 1–20, Night 1–7). Input read and stored in 2D array. <span class="mark-tag">3 marks</span></div>
+    </div>
+    <div class="anatomy-row-item anat-valid">
+      <div class="anat-label">Validation</div>
+      <div class="anat-desc">WHILE loop. Condition 0–4 inclusive. Re-prompt inside loop. <span class="mark-tag">2 marks</span></div>
+    </div>
+    <div class="anatomy-row-item anat-calc">
+      <div class="anat-label">Fee calculation</div>
+      <div class="anat-desc">Accumulate RoomFee[Room]. Rate $85. Accumulate TotalRevenue. Initialisation. <span class="mark-tag">3 marks</span></div>
+    </div>
+    <div class="anatomy-row-item anat-out">
+      <div class="anat-label">Max &amp; output</div>
+      <div class="anat-desc">MaxFee initialised. Correct IF comparison. Per-room output. Total revenue output. <span class="mark-tag">4 marks</span></div>
+    </div>
+    <div class="anatomy-row-item anat-comment">
+      <div class="anat-label">Messages &amp; comments</div>
+      <div class="anat-desc">All inputs/outputs have messages. At least 2 inline comments. <span class="mark-tag">3 marks</span></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════════════════════════════════════════
+     TAB 7 — MARK SCHEME
+     ════════════════════════════════════════ -->
+<section id="tab-markscheme" class="section">
+
+  <h2>Model answer &amp; mark scheme</h2>
+  <p class="muted">Hotel room occupancy tracker · 15 marks · Pseudocode</p>
+
+  <div class="totals-bar">
+    <div>
+      <div class="totals-lbl">Total available</div>
+      <div class="totals-big">15</div>
+    </div>
+    <div class="breakdown-col">
+      <div class="bd-row"><span class="bd-lbl">Input &amp; validation loop</span><span class="bd-val" style="margin-left:2rem">5</span></div>
+      <div class="bd-row"><span class="bd-lbl">Fee calculation</span><span class="bd-val" style="margin-left:2rem">3</span></div>
+      <div class="bd-row"><span class="bd-lbl">Max, output &amp; revenue</span><span class="bd-val" style="margin-left:2rem">4</span></div>
+      <div class="bd-row"><span class="bd-lbl">Comments &amp; messages</span><span class="bd-val" style="margin-left:2rem">3</span></div>
+    </div>
+  </div>
+
+  <h3>Full model pseudocode</h3>
+
+  <pre><code><span class="cm">// SECTION A — input and validate guest count for all rooms and nights</span>
+<span class="kw">FOR</span> Room ← <span class="num">1</span> <span class="kw">TO</span> <span class="num">20</span>
+   <span class="kw">FOR</span> Night ← <span class="num">1</span> <span class="kw">TO</span> <span class="num">7</span>
+      OUTPUT <span class="str">"Enter number of guests for room "</span> &amp; Room &amp; <span class="str">" on night "</span> &amp; Night &amp; <span class="str">": "</span>
+      Guests ← USERINPUT
+      <span class="kw">WHILE</span> Guests &lt; <span class="num">0</span> <span class="kw">OR</span> Guests &gt; <span class="num">4</span>
+         OUTPUT <span class="str">"Invalid. Enter a value from 0 to 4: "</span>
+         Guests ← USERINPUT
+      <span class="kw">ENDWHILE</span>
+      NightsOccupied[Room][Night] ← Guests
+   <span class="kw">NEXT</span> Night
+<span class="kw">NEXT</span> Room
+
+<span class="cm">// SECTION B — calculate weekly fee for each room and accumulate total revenue</span>
+TotalRevenue ← <span class="num">0</span>
+<span class="kw">FOR</span> Room ← <span class="num">1</span> <span class="kw">TO</span> <span class="num">20</span>
+   RoomFee[Room] ← <span class="num">0</span>
+   <span class="kw">FOR</span> Night ← <span class="num">1</span> <span class="kw">TO</span> <span class="num">7</span>
+      RoomFee[Room] ← RoomFee[Room] + (NightsOccupied[Room][Night] * <span class="num">85</span>)
+   <span class="kw">NEXT</span> Night
+   TotalRevenue ← TotalRevenue + RoomFee[Room]
+<span class="kw">NEXT</span> Room
+
+<span class="cm">// SECTION C — find highest revenue room, output all rooms, output totals</span>
+MaxFee ← <span class="num">0</span>
+MaxRoom ← <span class="num">0</span>
+<span class="kw">FOR</span> Room ← <span class="num">1</span> <span class="kw">TO</span> <span class="num">20</span>
+   <span class="kw">IF</span> RoomFee[Room] &gt; MaxFee <span class="kw">THEN</span>
+      MaxFee ← RoomFee[Room]
+      MaxRoom ← Room
+   <span class="kw">ENDIF</span>
+   OUTPUT <span class="str">"Room "</span> &amp; Room &amp; <span class="str">" — weekly fee: $"</span> &amp; RoomFee[Room]
+<span class="kw">NEXT</span> Room
+
+OUTPUT <span class="str">"Highest revenue room: Room "</span> &amp; MaxRoom &amp; <span class="str">" ($"</span> &amp; MaxFee &amp; <span class="str">")"</span>
+OUTPUT <span class="str">"Total hotel revenue for the week: $"</span> &amp; TotalRevenue</code></pre>
+
+  <hr class="rule">
+
+  <h3><span class="section-badge sb-loop">Section A</span> Input &amp; validation loop <span class="marks-float">5 marks</span></h3>
+  <div style="clear:both"></div>
+  <div class="ms-header-label">MARKSCHEME</div>
+  <div class="ms-block">
+    <div class="award">Award [5 max]</div>
+    <ul>
+      <li>Outer FOR loop correctly bounded <code>Room ← 1 TO 20</code> <em>[1]</em></li>
+      <li>Inner FOR loop correctly bounded <code>Night ← 1 TO 7</code> <em>[1]</em></li>
+      <li>USERINPUT assigned to a named variable before validation <em>[1]</em></li>
+      <li>WHILE loop used (not IF) with correct condition <code>Guests &lt; 0 OR Guests &gt; 4</code> <em>[1]</em></li>
+      <li>Re-prompt inside WHILE body; input re-read; value stored in <code>NightsOccupied[Room][Night]</code> <em>[1]</em></li>
+    </ul>
+    <div class="ms-note">Accept REPEAT…UNTIL or DO…WHILE with logically equivalent condition. Accept any valid variable names. Do not award validation mark for IF-only check — a single-check IF cannot guarantee valid data.</div>
+  </div>
+
+  <div class="alert alert-warn">
+    Examiner note — the most commonly dropped marks: (a) <code>Night ← 0 TO 6</code> instead of 1 TO 7; (b) IF instead of WHILE for validation. An IF check earns 0 for the validation mark even if the condition is otherwise correct.
+  </div>
+
+  <h3><span class="section-badge sb-calc">Section B</span> Fee calculation <span class="marks-float">3 marks</span></h3>
+  <div style="clear:both"></div>
+  <div class="ms-header-label">MARKSCHEME</div>
+  <div class="ms-block">
+    <div class="award">Award [3 max]</div>
+    <ul>
+      <li>Correct accumulation inside inner loop: <code>RoomFee[Room] ← RoomFee[Room] + (NightsOccupied[Room][Night] * 85)</code> <em>[1]</em></li>
+      <li><code>RoomFee[Room]</code> initialised to 0 before the inner loop or at the start of the outer loop <em>[1]</em></li>
+      <li><code>TotalRevenue</code> accumulated outside the inner loop (inside or after the outer loop) <em>[1]</em></li>
+    </ul>
+    <div class="ms-note">Rate must be 85 (not 3.50 — that was the car park scenario). Do not award accumulation mark if assignment overwrites rather than adds. Accept initialisation of RoomFee[Room] inside either loop as long as it occurs before the accumulation line.</div>
+  </div>
+
+  <div class="alert alert-red">
+    Common error: <code>RoomFee[Room] ← NightsOccupied[Room][Night] * 85</code> — this overwrites on every night and keeps only the last night's value. Zero marks for this line even if the rate is correct.
+  </div>
+
+  <h3><span class="section-badge sb-out">Section C</span> Max, output &amp; total revenue <span class="marks-float">4 marks</span></h3>
+  <div style="clear:both"></div>
+  <div class="ms-header-label">MARKSCHEME</div>
+  <div class="ms-block">
+    <div class="award">Award [4 max]</div>
+    <ul>
+      <li>MaxFee (and MaxRoom) initialised before the comparison loop <em>[1]</em></li>
+      <li>Correct IF comparison <code>RoomFee[Room] &gt; MaxFee</code> updating both MaxFee and MaxRoom <em>[1]</em></li>
+      <li>Each room's fee output with a suitable message including room identifier <em>[1]</em></li>
+      <li>Highest-revenue room output and TotalRevenue output with suitable messages <em>[1]</em></li>
+    </ul>
+    <div class="ms-note">Accept finding the max inside the same loop as per-room output if the logic is structurally correct. MaxFee initialised to -1 or to RoomFee[1] are acceptable alternatives to 0. Do not require a separate pass if max-finding and output coexist correctly in one loop.</div>
+  </div>
+
+  <h3><span class="section-badge sb-comment">Messages &amp; comments</span> <span class="marks-float">3 marks</span></h3>
+  <div style="clear:both"></div>
+  <div class="ms-header-label">MARKSCHEME</div>
+  <div class="ms-block">
+    <div class="award">Award [3 max]</div>
+    <ul>
+      <li>At least one meaningful inline comment explaining a non-obvious section of code <em>[1]</em></li>
+      <li>All INPUT statements include a message identifying what data is required (room number and night number visible in prompt) <em>[1]</em></li>
+      <li>All OUTPUT statements include a message giving context to the value — bare numeric output scores 0 for that line <em>[1]</em></li>
+    </ul>
+    <div class="ms-note">These 3 marks are often the easiest 3 in the question and the most frequently missed. A response with correct logic but no messages or comments cannot score more than 12/15.</div>
+  </div>
+
+  <hr class="rule">
+
+  <h2>Mark boundary guidance</h2>
+  <p class="muted" style="margin-bottom:0.75rem">Cambridge examiners apply these descriptors on the 15-mark programming question:</p>
+
+  <table class="band-table">
+    <thead>
+      <tr>
+        <th style="width:110px">Range</th>
+        <th>Descriptor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="band-13">13 – 15</td>
+        <td>All sections present and largely correct. Validation uses WHILE. Accumulation correct. All messages present. Minor syntax errors tolerated.</td>
+      </tr>
+      <tr>
+        <td class="band-9">9 – 12</td>
+        <td>Most sections attempted. One or two structural errors (e.g. IF instead of WHILE, accumulation overwrite). Most messages present.</td>
+      </tr>
+      <tr>
+        <td class="band-5">5 – 8</td>
+        <td>Loops attempted but bounds wrong or missing. Validation absent or IF-only. Calculation partially correct. Some output attempted.</td>
+      </tr>
+      <tr>
+        <td class="band-0">0 – 4</td>
+        <td>Only isolated fragments. One or two correct lines without coherent structure.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert-info">
+    Cambridge marking is <strong>point-based, not holistic</strong>. Each bullet above is independently awardable. A student who skips Section A entirely but writes correct Sections B and C can still score 7–8 marks. Never leave any section blank.
+  </div>
+
+</section>
+
+</main>
+
+<footer class="page-footer">
+  IGCSE Computer Science 0478 · Paper 2 Remediation Worksheet · Cambridge International · © Ren Hoe Lee
+</footer>
+
+<script>
+function showTab(btn, id) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleAns(btn) {
+  var box = btn.nextElementSibling;
+  if (box.style.display === 'block') {
+    box.style.display = 'none';
+    btn.textContent = '▶ show answer';
+  } else {
+    box.style.display = 'block';
+    btn.textContent = '▼ hide answer';
+  }
+}
+
+function updateChecklist() {
+  var total = 8, checked = 0;
+  for (var i = 1; i <= 8; i++) {
+    var cb = document.getElementById('c' + i);
+    var row = document.getElementById('cli-' + i);
+    if (cb.checked) { checked++; row.classList.add('cl-done'); }
+    else { row.classList.remove('cl-done'); }
+  }
+  document.getElementById('prog-label').textContent = checked + ' / ' + total + ' checked';
+  document.getElementById('prog-fill').style.width = Math.round(checked / total * 100) + '%';
+  document.getElementById('all-done').style.display = (checked === total) ? 'block' : 'none';
+}
+</script>
+</body>
+</html>
